@@ -12,36 +12,29 @@
     /* ===== RESET ===== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    
-/* ===== CUERPO ===== */
-body {
-  font-family: 'Poppins', sans-serif;
-  color: #2e2e2e;
-  min-height: 100vh;
-  position: relative;
-  overflow: hidden;
+    /* ===== CUERPO ===== */
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #2e2e2e;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* ===== FONDO ACLARADO Y AGRANDADO ===== */
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background: url("img/imagen2.jpg") center center / cover no-repeat fixed;
-
-  /* 🔥 Aclarado del fondo */
-  filter: brightness(1.45); /* <- Aumenta la claridad aquí */
-
-  z-index: -1;
-}
-
-
+    /* ===== FONDO ===== */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("img/imagen2.jpg") center center / cover no-repeat;
+      background-attachment: scroll; /* FIX para móviles */
+      filter: brightness(1.45);
+      z-index: -1;
+    }
 
     /* ===== BURBUJAS ===== */
     .bubble {
@@ -69,6 +62,7 @@ body::before {
       border-radius: 25px;
       box-shadow: 0 15px 45px rgba(0,0,0,0.15);
       animation: fadeIn 1.6s ease-out;
+      max-width: 550px;
     }
 
     @keyframes fadeIn {
@@ -94,7 +88,6 @@ body::before {
       font-family: 'Playfair Display', serif;
       font-size: 3.5rem;
       color: #2c3e50;
-      letter-spacing: 1px;
       margin-bottom: 12px;
     }
 
@@ -102,10 +95,8 @@ body::before {
     p {
       font-size: 1.25rem;
       color: #3a3a3a;
-      margin-bottom: 30px;
       max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto 30px auto;
       line-height: 1.6;
     }
 
@@ -156,7 +147,7 @@ body::before {
 
     iframe { width: 100%; height: 100%; border: none; }
 
-    /* ===== FRASES MOTIVACIONALES ===== */
+    /* ===== FRASES ===== */
     footer {
       position: absolute;
       bottom: 20px;
@@ -172,14 +163,48 @@ body::before {
       transition: opacity 0.5s ease;
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* ===== RESPONSIVE PARA MÓVILES ===== */
     @media (max-width: 768px) {
-      .container { width: 90%; padding: 35px; }
-      h1 { font-size: 2.6rem; }
-      p { font-size: 1rem; }
-      .chat-widget { width: 90%; right: 5%; height: 440px; }
-      .chat-button { width: 65px; height: 65px; font-size: 28px; }
-      footer { font-size: 0.9rem; bottom: 10px; }
+
+      body { overflow-y: auto; }
+
+      .container {
+        width: 92%;
+        padding: 25px;
+      }
+
+      .logo {
+        width: 95px;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+        line-height: 1.4;
+      }
+
+      .chat-widget {
+        width: 95%;
+        right: 2.5%;
+        height: 75vh;
+      }
+
+      .chat-button {
+        width: 60px;
+        height: 60px;
+        font-size: 26px;
+        bottom: 25px;
+        right: 25px;
+      }
+
+      footer {
+        font-size: 0.85rem;
+        bottom: 15px;
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -213,13 +238,11 @@ body::before {
   <footer id="quote">Respira profundo. Estás haciendo lo mejor que puedes 💚</footer>
 
   <script>
-    // Mostrar / ocultar chat
     function toggleChat() {
       const chat = document.getElementById('chatWidget');
       chat.style.display = chat.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Frases motivacionales rotativas
     const frases = [
       "Respira profundo. Estás haciendo lo mejor que puedes 💚",
       "Cada pequeño paso hacia la calma cuenta 🌿",
